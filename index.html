@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+
+    <meta charset="utf-8" />
+
+    <title>QR-Bill</title>
+
+    <meta name="robots" content="noindex, nofollow" />
+
+    <script type="application/javascript">
+      /* Your bank account must be specified */
+      var account = 'CH1234567890123456789,Name Name,Street,12,3456,City';
+
+      /* You may want to pass the parameters with the URL */
+      let params = new URLSearchParams( document.location.search );
+      var ref = params.get( 'ref' );
+      var info = params.get( 'info' );
+      var dbtr = params.get( 'dbtr' );
+      var ccy = params.get( 'ccy' );
+      var amt = params.get( 'amt' );
+
+      /* You may want to define default values */
+      if ( null === dbtr ) {
+        dbtr = 'Default Name,Street,12,3456,City';
+      }
+      if ( null === info ) {
+        info = 'Standard payment';
+      }
+    </script>
+
+    <style>
+      /* Hide 3 of 4 languages (de, fr, it, en) */
+      .fr,.it,.en { display: none; }
+
+      /* Style the document */
+      html {
+        background-color: grey;
+      }
+      body {
+        width: 90%;
+        margin: 0 auto;
+        padding: 0;
+        padding-top: 10%;
+        background-color: white;
+      }
+    </style>
+
+    <link rel="stylesheet" type="text/css" href="swissqrbill.css" media="all" />
+
+    <!-- We use the QR Code generator library by Nayuki (https://github.com/nayuki/QR-Code-generator) -->
+    <script type="application/javascript" src="https://gitcdn.link/repo/nayuki/Nayuki-web-published-code/master/qr-code-generator-library/qrcodegen.js"></script>
+
+  </head>
+
+  <body>
+    <!-- other stuff -->
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 110" id="swissqr">
+      <g class="cut">
+        <line style="fill:none;stroke:#000000;stroke-width:0.176389;stroke-dasharray:3.043478261,3.043478261;" x1="0" y1="5" x2="210" y2="5" />
+        <line style="fill:none;stroke:#000000;stroke-width:0.176389;stroke-dasharray:3.043478261,3.043478261;" x1="62" y1="5" x2="62" y2="110" />
+        <g transform="scale(-.25) translate(-772 -20)">
+          <rect style="fill:#ffffff;stroke:none;" x="0" y="-7" width="21" height="14" />
+          <path transform="scale(.01) translate(75 -927)" style="fill:#000000;stroke:none;" d="M1905 1218q-47 44 -93.5 64t-101.5 20q-80 0 -280.5 -65t-567.5 -211q-128 55 -262.5 81.5t-134.5 38.5q0 4 0.5 6t1.5 3q18 34 26.5 64t8.5 59q0 83 -61.5 138.5t-155.5 55.5q-96 0 -156.5 -59t-60.5 -152q0 -98 76.5 -150.5t220.5 -52.5h81q134 0 193.5 -29t83.5 -102 q-23 -72 -83.5 -101.5t-193.5 -29.5h-81q-144 0 -220.5 -52t-76.5 -150q0 -93 60.5 -152t156.5 -59q94 0 155.5 55.5t61.5 138.5q0 29 -8.5 59t-26.5 64q-1 2 -1.5 4t-0.5 4q0 13 134.5 39.5t262.5 81.5q380 -150 574.5 -213t273.5 -63q54 0 101.5 20t93.5 64l-779 290z M436 589q0 -60 -43 -100.5t-108 -40.5q-67 0 -108.5 38.5t-41.5 98.5q0 63 44 103.5t114 40.5q64 0 103.5 -39t39.5 -101zM436 1265q0 -61 -40 -100t-103 -39q-68 0 -113 41t-45 102t41.5 99.5t108.5 38.5q65 0 108 -40.5t43 -101.5z" />
+        </g>
+        <g transform="scale(-.25) translate(-248 -402) rotate(90)">
+          <rect style="fill:#ffffff;stroke:none;" x="0" y="-7" width="21" height="14" />
+          <path transform="scale(.01) translate(75 -927)" style="fill:#000000;stroke:none;" d="M1905 1218q-47 44 -93.5 64t-101.5 20q-80 0 -280.5 -65t-567.5 -211q-128 55 -262.5 81.5t-134.5 38.5q0 4 0.5 6t1.5 3q18 34 26.5 64t8.5 59q0 83 -61.5 138.5t-155.5 55.5q-96 0 -156.5 -59t-60.5 -152q0 -98 76.5 -150.5t220.5 -52.5h81q134 0 193.5 -29t83.5 -102 q-23 -72 -83.5 -101.5t-193.5 -29.5h-81q-144 0 -220.5 -52t-76.5 -150q0 -93 60.5 -152t156.5 -59q94 0 155.5 55.5t61.5 138.5q0 29 -8.5 59t-26.5 64q-1 2 -1.5 4t-0.5 4q0 13 134.5 39.5t262.5 81.5q380 -150 574.5 -213t273.5 -63q54 0 101.5 20t93.5 64l-779 290z M436 589q0 -60 -43 -100.5t-108 -40.5q-67 0 -108.5 38.5t-41.5 98.5q0 63 44 103.5t114 40.5q64 0 103.5 -39t39.5 -101zM436 1265q0 -61 -40 -100t-103 -39q-68 0 -113 41t-45 102t41.5 99.5t108.5 38.5q65 0 108 -40.5t43 -101.5z" />
+        </g>
+      </g>
+
+      <symbol id="cornermark" width="3" height="3" viewBox="0 0 3 3"><!-- x pt * 127 / 360 = y mm -->
+        <polygon points="0,0 0,3 0.264583333,3 0.264583333,0.264583333 3,0.264583333 3,0" style="fill:#000000;stroke:none;" />
+      </symbol>
+      <g class="blankamt" style="display:none;">
+        <use href="#cornermark" x="27" y="73.765844727" />
+        <use href="#cornermark" x="57" y="73.765844727" transform="rotate(90 57 73.765844727)" />
+        <use href="#cornermark" x="27" y="83.765844727" transform="rotate(270 27 83.765844727)" />
+        <use href="#cornermark" x="57" y="83.765844727" transform="rotate(180 57 83.765844727)" />
+        <use href="#cornermark" x="78" y="77.804185655" />
+        <use href="#cornermark" x="118" y="77.804185655" transform="rotate(90 118 77.804185655)" />
+        <use href="#cornermark" x="78" y="92.804185655" transform="rotate(270 78 92.804185655)" />
+        <use href="#cornermark" x="118" y="92.804185655" transform="rotate(180 118 92.804185655)" />
+      </g>
+    </svg>
+    <div id="qr_bill" class="qr_bill">
+      <div id="qr_bill_receipt" class="qr_bill receipt">
+        <div id="qr_bill_receipt_title" class="qr_bill receipt title">
+          <h2 class="de">Empfangsschein</h2>
+          <h2 class="fr">Récépissé</h2>
+          <h2 class="it">Ricevuta</h2>
+          <h2 class="en">Receipt</h2>
+        </div>
+        <div id="qr_bill_receipt_information" class="qr_bill receipt information">
+          <div>
+            <h3 class="de">Konto / Zahlbar an</h3>
+            <h3 class="fr">Compte / Payable à</h3>
+            <h3 class="it">Conto / Pagabile a</h3>
+            <h3 class="en">Account / Payable to</h3>
+            <p class="the_cdtr"></p>
+          </div>
+          <div id="qr_bill_receipt_information_reference" class="qr_bill receipt information reference">
+            <h3 class="de">Referenz</h3>
+            <h3 class="fr">Référence</h3>
+            <h3 class="it">Riferimento</h3>
+            <h3 class="en">Reference</h3>
+            <p class="the_rmtinf"></p>
+          </div>
+          <div>
+            <h3 class="de">Zahlbar durch<span class="blankdbtr"> (Name/Adresse)</span></h3>
+            <h3 class="fr">Payable par<span class="blankdbtr"> (nom/adresse)</span></h3>
+            <h3 class="it">Pagabile da<span class="blankdbtr"> (nome/indirizzo)</span></h3>
+            <h3 class="en">Payable by<span class="blankdbtr"> (name/address)</span></h3>
+            <p class="the_ultmtdbtr"></p>
+          </div>
+        </div>
+        <div id="qr_bill_receipt_amount" class="qr_bill receipt amount">
+          <div>
+            <h3 class="de">Währung</h3>
+            <h3 class="fr">Monnaie</h3>
+            <h3 class="it">Valuta</h3>
+            <h3 class="en">Currency</h3>
+            <p class="the_ccyamt_ccy">CHF</p>
+          </div>
+          <div>
+            <h3 class="de">Betrag</h3>
+            <h3 class="fr">Montant</h3>
+            <h3 class="it">Importo</h3>
+            <h3 class="en">Amount</h3>
+            <p class="the_ccyamt_amt"></p>
+          </div>
+        </div>
+        <div id="qr_bill_receipt_acceptancepoint" class="qr_bill receipt acceptancepoint">
+          <div>
+            <h3 class="de">Annahmestelle</h3>
+            <h3 class="fr">Point de dépôt</h3>
+            <h3 class="it">Punto di accettazione</h3>
+            <h3 class="en">Acceptance point</h3>
+          </div>
+        </div>
+      </div>
+      <div id="qr_bill_paymentpart" class="qr_bill paymentpart">
+        <div id="qr_bill_paymentpart_title" class="qr_bill paymentpart title">
+          <h2 class="de">Zahlteil</h2>
+          <h2 class="fr">Section paiement</h2>
+          <h2 class="it">Sezione pagamento</h2>
+          <h2 class="en">Payment part</h2>
+        </div>
+        <div id="qr_bill_paymentpart_qrcode" class="qr_bill paymentpart qrcode">
+        </div>
+        <div id="qr_bill_paymentpart_amount" class="qr_bill paymentpart amount">
+          <div>
+            <h3 class="de">Währung</h3>
+            <h3 class="fr">Monnaie</h3>
+            <h3 class="it">Valuta</h3>
+            <h3 class="en">Currency</h3>
+            <p class="the_ccyamt_ccy">CHF</p>
+          </div>
+          <div>
+            <h3 class="de">Betrag</h3>
+            <h3 class="fr">Montant</h3>
+            <h3 class="it">Importo</h3>
+            <h3 class="en">Amount</h3>
+            <p class="the_ccyamt_amt"></p>
+          </div>
+        </div>
+        <div id="qr_bill_paymentpart_information" class="qr_bill paymentpart information">
+          <div>
+            <h3 class="de">Konto / Zahlbar an</h3>
+            <h3 class="fr">Compte / Payable à</h3>
+            <h3 class="it">Conto / Pagabile a</h3>
+            <h3 class="en">Account / Payable to</h3>
+            <p class="the_cdtr"></p>
+          </div>
+          <div id="qr_bill_paymentpart_information_reference" class="qr_bill paymentpart information reference">
+            <h3 class="de">Referenz</h3>
+            <h3 class="fr">Référence</h3>
+            <h3 class="it">Riferimento</h3>
+            <h3 class="en">Reference</h3>
+            <p class="the_rmtinf"></p>
+          </div>
+          <div id="qr_bill_paymentpart_information_addinf" class="qr_bill paymentpart information addinf">
+            <h3 class="de">Zusätzliche Informationen</h3>
+            <h3 class="fr">Informations additionnelles</h3>
+            <h3 class="it">Informazioni aggiuntive</h3>
+            <h3 class="en">Additional information</h3>
+            <p class="the_addinf"></p>
+          </div>
+          <div>
+            <h3 class="de">Zahlbar durch<span class="blankdbtr"> (Name/Adresse)</span></h3>
+            <h3 class="fr">Payable par<span class="blankdbtr"> (nom/adresse)</span></h3>
+            <h3 class="it">Pagabile da<span class="blankdbtr"> (nome/indirizzo)</span></h3>
+            <h3 class="en">Payable by<span class="blankdbtr"> (name/address)</span></h3>
+            <p class="the_ultmtdbtr"></p>
+          </div>
+        </div>
+        <div id="qr_bill_paymentpart_furtherinformation" class="qr_bill paymentpart furtherinformation">
+        </div>
+      </div>
+    </div>
+
+
+    <script type="application/javascript">
+      document.documentElement.style.setProperty( '--qr_bill-10pt', ( ( document.body.offsetWidth * 25.4 ) / ( 21 * 72 ) ) + 'px' );
+      window.addEventListener( 'resize', function() { document.documentElement.style.setProperty( '--qr_bill-10pt', ( ( document.body.offsetWidth * 25.4 ) / ( 21 * 72 ) ) + 'px' ); } );
+      /*
+      var account = 'CH1234567890123456789,Name Name,Street,12,3456,City';
+
+      let params = new URLSearchParams( document.location.search );
+      var ref = params.get( 'ref' );
+      var info = params.get( 'info' );
+      var dbtr = params.get( 'dbtr' );
+      var ccy = params.get( 'ccy' );
+      var amt = params.get( 'amt' );
+      */
+
+      var info_account = '';
+      var split = account.split( ',' );
+      if ( 6 === split.length ) {
+        split[ 0 ] = split[ 0 ].replace( / /g, '' );
+        for ( var pos = 0; pos < 21; pos += 4 ) {
+          info_account += split[ 0 ].substr( pos, 4 ) + ' ';
+        }
+        info_account = info_account.trim();
+        info_account += "<br />" + split[ 1 ] + "<br />" + split[ 2 ] + " " + split[ 3 ] + "<br />" + split[ 4 ] + " " + split[ 5 ];
+        split[ 0 ] += "\r\nS";
+        account = split.join( "\r\n" ) + "\r\nCH";
+      } else {
+        account = '';
+      }
+
+      var info_dbtr = '';
+      if ( null === dbtr ) {
+        dbtr = '';
+      }
+      if ( '' !== dbtr ) {
+        split = dbtr.split( ',' );
+        if ( 5 === split.length ) {
+          info_dbtr = split[ 0 ] + "<br />" + split[ 1 ] + " " + split[ 2 ] + "<br />" + split[ 3 ] + " " + split[ 4 ];
+          dbtr = "S\r\n" + split.join( "\r\n" ) + "\r\nCH";
+        } else {
+          dbtr = '';
+        }
+      }
+      if ( '' === dbtr ) {
+        dbtr = "\r\n\r\n\r\n\r\n\r\n\r\n";
+      }
+
+      var tp = 'NON';
+      var info_ref = '';
+      if ( null === ref ) {
+        ref = '';
+      }
+      ref = ref.replace( / /g, '' );
+      if ( '' !== ref ) {
+        if ( /^\d{27}$/.test( ref ) ) {
+          tp = 'QRR';
+          info_ref += ref.substr( 0, 2 ) + ' ';
+          for ( var pos = 2; pos < 27; pos += 5 ) {
+            info_ref += ref.substr( pos, 5 ) + ' ';
+          }
+          info_ref = info_ref.trim();
+        } else if ( /^RF\d{2}[A-Za-z0-9]{0,21}$/.test( ref ) ) {
+          tp = 'SCOR';
+          for ( var pos = 0; pos < 25; pos += 4 ) {
+            info_ref += ref.substr( pos, 4 ) + ' ';
+          }
+          info_ref = info_ref.trim();
+        } else {
+          ref = '';
+        }
+      }
+
+      if ( null === info ) {
+        info = '';
+      }
+
+      if ( null !== ccy && 'EUR' === ccy.toUpperCase() ) {
+        ccy = 'EUR';
+      } else {
+        ccy = 'CHF';
+      }
+
+      var info_amt = '';
+      if ( Number.isNaN( parseFloat( amt ) ) ) {
+        amt = '';
+      } else {
+        amt = parseFloat( amt ).toFixed(2);
+
+        let f = parseFloat( amt );
+
+        if ( 999 < f ) {
+          let t = Math.floor( f / 1000 );
+          let h = f - ( 1000 * t );
+
+          t = t.toString();
+          t = ' '.repeat( 4 - ( t.length % 4 ) ) + t;
+          for ( var pos = 0; pos < t.length; pos += 4 ) {
+            info_amt += t.substr( pos, 4 ) + ' ';
+          }
+          info_amt = info_amt.trim();
+
+          if ( 10 > h ) {
+            info_amt += ' 00' + h.toFixed(2);
+          } else if ( 100 > h ) {
+            info_amt += ' 0' + h.toFixed(2);
+          } else {
+            info_amt += ' ' + h.toFixed(2);
+          }
+        } else {
+          info_amt = amt;
+        }
+      }
+
+
+      let cross = '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="-55.15715 -55.15715 130.114285714 130.114285714"><rect x="0" y="0" width="19.8" height="19.8" style="fill:#ffffff;stroke:none;"/><rect x="1.41785" y="1.41785" class="st0" width="16.9643" height="16.9643" style="fill:#000000;stroke:none;"/><rect x="8.25" y="4.4" class="st0" width="3.3" height="11" style="fill:#ffffff;stroke:none;"/><rect x="4.4" y="8.25" class="st0" width="11" height="3.3" style="fill:#ffffff;stroke:none;"/></svg>';
+      let text = "SPC\r\n0200\r\n1\r\n"
+      text += account + "\r\n";
+      text += "\r\n\r\n\r\n\r\n\r\n\r\n\r\n";
+      text += amt + "\r\n" + ccy + "\r\n";
+      text += dbtr + "\r\n";
+      text += tp + "\r\n";
+      text += ref + "\r\n";
+      text += info + "\r\n";
+      text += "EPD\r\n\r\n\r\n";
+      let QRC = qrcodegen.QrCode;
+      let qr0 = QRC.encodeText( text, QRC.Ecc.MEDIUM );
+      document.getElementById( 'qr_bill_paymentpart_qrcode' ).innerHTML = qr0.toSvgString( 0 ) + cross;
+
+      Array.from( document.getElementById( 'qr_bill' ).getElementsByClassName( 'the_cdtr' ) ).forEach( ( el ) => {
+        el.innerHTML = info_account;
+      } );
+
+      if ( '' === info_dbtr ) {
+        Array.from( document.getElementById( 'qr_bill' ).getElementsByClassName( 'blankdbtr' ) ).forEach( ( el ) => {
+          el.style.display = 'inline';
+        } );
+        Array.from( document.getElementById( 'qr_bill_receipt_information' ).getElementsByClassName( 'the_ultmtdbtr' ) ).forEach( ( el ) => {
+          el.outerHTML = '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="-1 -1 54 22" id="qr_bill_receipt_information_blankdbtr" class="the_ultmtdbtr"><symbol id="cornermark" width="3" height="3" viewBox="0 0 3 3"><polygon points="0,0 0,3 0.264583333,3 0.264583333,0.264583333 3,0.264583333 3,0" style="fill:#000000;stroke:none;" /></symbol><use href="#cornermark" x="0" y="0" /><use href="#cornermark" x="52" y="0" transform="rotate(90 52 0)" /><use href="#cornermark" x="0" y="20" transform="rotate(270 0 20)" /><use href="#cornermark" x="52" y="20" transform="rotate(180 52 20)" /></svg>';
+        } );
+        Array.from( document.getElementById( 'qr_bill_paymentpart_information' ).getElementsByClassName( 'the_ultmtdbtr' ) ).forEach( ( el ) => {
+          el.outerHTML = '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="-1 -1 67 27" id="qr_bill_paymentpart_information_blankdbtr" class="the_ultmtdbtr"><symbol id="cornermark" width="3" height="3" viewBox="0 0 3 3"><polygon points="0,0 0,3 0.264583333,3 0.264583333,0.264583333 3,0.264583333 3,0" style="fill:#000000;stroke:none;" /></symbol><use href="#cornermark" x="0" y="0" /><use href="#cornermark" x="65" y="0" transform="rotate(90 65 0)" /><use href="#cornermark" x="0" y="25" transform="rotate(270 0 25)" /><use href="#cornermark" x="65" y="25" transform="rotate(180 65 25)" /></svg>';
+        } );
+      } else {
+        Array.from( document.getElementById( 'qr_bill' ).getElementsByClassName( 'the_ultmtdbtr' ) ).forEach( ( el ) => {
+          el.innerHTML = info_dbtr;
+        } );
+      }
+
+      if ( 'NON' === tp ) {
+        Array.from( document.getElementById( 'qr_bill' ).getElementsByClassName( 'reference' ) ).forEach( ( el ) => {
+          el.style.display = 'none';
+        } );
+      } else {
+        Array.from( document.getElementById( 'qr_bill' ).getElementsByClassName( 'the_rmtinf' ) ).forEach( ( el ) => {
+          el.innerHTML = info_ref;
+        } );
+      }
+
+      if ( '' === info ) {
+        Array.from( document.getElementById( 'qr_bill' ).getElementsByClassName( 'addinf' ) ).forEach( ( el ) => {
+          el.style.display = 'none';
+        } );
+      } else {
+        Array.from( document.getElementById( 'qr_bill' ).getElementsByClassName( 'the_addinf' ) ).forEach( ( el ) => {
+          el.innerHTML = info;
+        } );
+      }
+
+      Array.from( document.getElementById( 'qr_bill' ).getElementsByClassName( 'the_ccyamt_ccy' ) ).forEach( ( el ) => {
+        el.innerHTML = ccy;
+      } );
+
+      if ( '' === amt ) {
+        Array.from( document.getElementById( 'swissqr' ).getElementsByClassName( 'blankamt' ) ).forEach( ( el ) => {
+          el.style.display = 'initial';
+        } );
+      } else {
+        Array.from( document.getElementById( 'qr_bill' ).getElementsByClassName( 'the_ccyamt_amt' ) ).forEach( ( el ) => {
+          el.innerHTML = info_amt;
+        } );
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,252 @@
+      #qr_bill {
+        font-family: 'Liberation Sans';
+      }
+
+      #qr_bill * {
+        margin: 0;
+        padding: 0;
+      }
+
+      #qr_bill_paymentpart_qrcode svg {
+        display: block;
+      }
+
+      #qr_bill_receipt_amount div:first-child {
+        width: 22%;
+        float: left;
+      }
+      #qr_bill_paymentpart_amount div:first-child {
+        width: 30%;
+        float: left;
+      }
+      #qr_bill_receipt_acceptancepoint {
+        text-align: right;
+      }
+
+      #qr_bill .blankdbtr {
+        display: none;
+      }
+
+      #qr_bill h2,
+      #qr_bill h3 {
+        font-weight: bold;
+      }
+
+      #qr_bill h2 {
+        font-size: 1.1em;
+      }
+
+      #qr_bill_receipt h3 {
+        font-size: .6em;
+        line-height: calc( .9em / .6 );
+      }
+
+      #qr_bill_receipt p {
+        font-size: .8em;
+        line-height: calc( .9em / .8 );
+        padding-bottom: calc( .9em / .8 );
+      }
+
+      #qr_bill_receipt_amount p {
+        line-height: calc( 1.1em / .8 );
+      }
+
+      #qr_bill_receipt_acceptancepoint h3 {
+        line-height: calc( .8em / .6 );
+      }
+
+      #qr_bill_paymentpart h3 {
+        font-size: .8em;
+        line-height: calc( 1.1em / .8 );
+      }
+
+      #qr_bill_paymentpart p {
+        font-size: 1em;
+        line-height: 1.1em;
+        padding-bottom: 1.1em;
+      }
+
+      #qr_bill_paymentpart_amount p {
+        line-height: 1.3em;
+      }
+
+      #qr_bill_paymentpart_furtherinformation * {
+        font-size: .7em;
+        line-height: calc( .8em / .7 );
+      }
+
+
+      #qr_bill {
+        display: grid;
+        grid-template-columns: 5fr 52fr 10fr 138fr 5fr;
+      }
+
+      #qr_bill_receipt {
+        grid-column-start: 2;
+        grid-column-end: 3;
+
+        display: grid;
+        grid-template-rows: 5fr 7fr 56fr 14fr 18fr 5fr;
+      }
+      #qr_bill_receipt_title {
+        grid-row-start: 2;
+        grid-row-end: 3;
+      }
+      #qr_bill_receipt_information {
+        grid-row-start: 3;
+        grid-row-end: 4;
+      }
+      #qr_bill_receipt_amount {
+        grid-row-start: 4;
+        grid-row-end: 5;
+      }
+      #qr_bill_receipt_acceptancepoint {
+        grid-row-start: 5;
+        grid-row-end: 6;
+      }
+
+      #qr_bill_paymentpart {
+        grid-column-start: 4;
+        grid-column-end: 5;
+
+        display: grid;
+        grid-template-columns: 51fr 87fr;
+        grid-template-rows: 5fr 7fr 56fr 22fr 10fr 5fr;
+      }
+      #qr_bill_paymentpart_title {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 2;
+        grid-row-end: 3;
+      }
+      #qr_bill_paymentpart_qrcode {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 3;
+        grid-row-end: 4;
+      }
+      #qr_bill_paymentpart_amount {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 4;
+        grid-row-end: 5;
+      }
+      #qr_bill_paymentpart_information {
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 2;
+        grid-row-end: 5;
+      }
+      #qr_bill_paymentpart_furtherinformation {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 5;
+        grid-row-end: 6;
+      }
+
+      #qr_bill div {
+        overflow: visible;
+      }
+
+
+      @media screen {
+
+        :root {
+          --qr_bill-10pt: calc( 960px / 72 );
+          --qr_bill-10mm: calc( 72 * var( --qr_bill-10pt ) / 25.4 );
+        }
+
+        #swissqr {
+          position: absolute;
+          width: calc( 21 * var( --qr_bill-10mm ) );
+          height: calc( 11 * var( --qr_bill-10mm ) );
+          background-color: #ffffff;
+        }
+
+        #qr_bill {
+          position: absolute;
+          width: calc( 21 * var( --qr_bill-10mm ) );
+          height: calc( 10.5 * var( --qr_bill-10mm ) );
+          margin-top: calc( .5 * var( --qr_bill-10mm ) );
+        }
+
+        #qr_bill_paymentpart_qrcode svg {
+          width: calc( 4.6 * var( --qr_bill-10mm ) );
+          height: calc( 4.6 * var( --qr_bill-10mm ) );
+          margin-top: calc( .5 * var( --qr_bill-10mm ) );
+        }
+        #qr_bill_paymentpart_qrcode svg + svg {
+          margin-top: calc( -4.6 * var( --qr_bill-10mm ) );
+        }
+        #qr_bill_receipt_information_blankdbtr {
+          width: calc( 5.4 * var( --qr_bill-10mm ) );
+          height: calc( 2.2 * var( --qr_bill-10mm ) );
+          margin-top: calc( -.1 * var( --qr_bill-10mm ) );
+          margin-left: calc( -.1 * var( --qr_bill-10mm ) );
+        }
+        #qr_bill_paymentpart_information_blankdbtr {
+          width: calc( 6.7 * var( --qr_bill-10mm ) );
+          height: calc( 2.7 * var( --qr_bill-10mm ) );
+          margin-top: calc( -.1 * var( --qr_bill-10mm ) );
+          margin-left: calc( -.1 * var( --qr_bill-10mm ) );
+        }
+
+        #qr_bill,
+        #qr_bill div {
+          font-size: var( --qr_bill-10pt );
+        }
+
+      }
+
+      @media print {
+
+        @page {
+          size: 21cm 29.7cm;
+          margin: 0;
+        }
+
+        #swissqr {
+          position: absolute;
+          top: 18.7cm;
+          left: 0;
+          width: 21cm;
+          height: 11cm;
+        }
+
+        #qr_bill {
+          page-break-inside: avoid;
+
+          position: absolute;
+          top: 19.2cm;
+          left: 0;
+          width: 21cm;
+          height: 10.5cm;
+        }
+
+        #qr_bill_paymentpart_qrcode svg {
+          width: 4.6cm;
+          height: 4.6cm;
+          margin-top: .5cm;
+        }
+        #qr_bill_paymentpart_qrcode svg + svg {
+          margin-top: -4.6cm;
+        }
+        #qr_bill_receipt_information_blankdbtr {
+          width: 5.4cm;
+          height: 2.2cm;
+          margin-top: -.1cm;
+          margin-left: -.1cm;
+        }
+        #qr_bill_paymentpart_information_blankdbtr {
+          width: 6.7cm;
+          height: 2.7cm;
+          margin-top: -.1cm;
+          margin-left: -.1cm;
+        }
+
+        #qr_bill,
+        #qr_bill div {
+          font-size: 10pt;
+        }
+
+      }

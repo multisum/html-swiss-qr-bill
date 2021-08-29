@@ -49,6 +49,7 @@
     </style>
 
     <link rel="stylesheet" type="text/css" href="swissqrbill.css" media="all" />
+    <script type="application/javascript" src="creditor_reference.js"></script>
 
     <!-- We use the QR Code generator library by Nayuki (https://github.com/nayuki/QR-Code-generator) -->
     <script type="application/javascript" src="qrcodegen-1.6.js"></script>
@@ -263,11 +264,26 @@
           }
           info_ref = info_ref.trim();
         } else if ( /^RF\d{2}[A-Za-z0-9]{0,21}$/.test( ref ) ) {
+        } else if ( /^RF\d{2}[A-Z0-9]{0,21}$/.test( ref.toUpperCase() ) ) {
+          ref = ref.toUpperCase();
+        } else if ( /^[A-Za-z0-9]{0,21}$/.test( ref ) ) {
+          if ( 'function' === typeof generate_creditor_reference ) {
+            ref = generate_creditor_reference( ref );
+          }
+        }
+        if ( /^RF\d{2}[A-Za-z0-9]{0,21}$/.test( ref ) ) {
           tp = 'SCOR';
           for ( var pos = 0; pos < 25; pos += 4 ) {
             info_ref += ref.substr( pos, 4 ) + ' ';
           }
           info_ref = info_ref.trim();
+          if ( 'function' === typeof check_creditor_reference ) {
+            if ( ! check_creditor_reference( ref ) ) {
+              Array.from( document.getElementById( 'qr_bill' ).getElementsByClassName( 'the_rmtinf' ) ).forEach( ( el ) => {
+                el.style.color = 'red';
+              } );
+            }
+          }
         } else {
           ref = '';
         }
